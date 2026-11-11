@@ -1,0 +1,548 @@
+@use "sass:map";
+
+.zen-maru-gothic-regular {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+$breakpoints: (
+  "pc": "screen and (min-width: 601px)",
+  "sp": "screen and (max-width: 600px)",
+);
+@mixin mq($breakpoint) {
+  @media #{map.get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin a($color: #370e0e) {
+  display: inline-block;
+  color: $color;
+  text-decoration: none;
+}
+
+@mixin circle($color: #fa8eb5) {
+  // align-items: center;
+  margin-right: 15px;
+  content: "";
+  display: inline-block;
+  // line-height: 20px;
+  width: 20px;
+  height: 20px;
+  border: solid 3px $color;
+  background-color: $color;
+  border-radius: 50%;
+  // vertical-align: bottom;
+  box-shadow: 2px 3px 5px rgb(197, 196, 185);
+}
+
+@mixin title {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  vertical-align: top;
+}
+
+html {
+  background-color: #fffcec;
+  color: #370e0e;
+}
+img {
+  vertical-align: bottom;
+}
+
+header {
+  // width: 100%;
+  height: 80px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    @include a;
+  }
+  h1 {
+    line-height: 0;
+    img {
+      width: 200px;
+    }
+  }
+  .menu {
+    @include mq(sp) {
+      display: none;
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      // @include mq(sp) {
+      //   flex-direction: column;
+      //   gap: 30px;
+      // }
+      li {
+        font-size: 13px;
+        padding-right: 20px;
+        a {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+.toggle-btn {
+  display: none;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  right: 0;
+  transition: all 0.5s;
+  cursor: pointer;
+  @include mq(sp) {
+    display: block;
+  }
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #370e0e;
+    transition: all 0.5s;
+    position: absolute;
+  }
+}
+.toggle-btn span:nth-child(1) {
+  top: 15%;
+}
+/*
+2本目の線の位置を設定
+*/
+.toggle-btn span:nth-child(2) {
+  top: 50%;
+}
+.toggle-btn span:nth-child(3) {
+  top: 85%;
+}
+.open .toggle-btn span {
+  background-color: white;
+  z-index: 100;
+}
+.open .toggle-btn span:nth-child(1) {
+  transform: rotate(-45deg);
+  top: 50%;
+}
+/*2本目の線を45度回転*/
+.open .toggle-btn span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+/* 3本目 */
+.open .toggle-btn span:nth-child(3) {
+  transform: rotate(45deg);
+  top: 50%;
+}
+
+.mask {
+  display: none;
+}
+.open .mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.8;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.sp-menu {
+  display: none;
+  position: fixed;
+  left: -120%;
+  width: 300px;
+  padding: 100px 20px 0 20px;
+  background-color: #370e0e;
+  height: 100vh;
+  ul {
+    list-style: none;
+    gap: 30px;
+    li {
+      padding-block: 15px;
+      a {
+        @include a(#fffcec);
+      }
+    }
+  }
+  @include mq(sp) {
+    display: block;
+  }
+}
+
+.open .sp-menu {
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 40%;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin-inline: auto;
+  @include mq(sp) {
+    max-width: 580px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+}
+
+.top {
+  .top-wrapper {
+    position: relative;
+    img {
+      width: 100%;
+      height: 95vh;
+      object-fit: cover;
+    }
+  }
+  h2 {
+    font-size: 36px;
+    display: inline-block;
+    // border: solid 1px red;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    color: white;
+    @include mq(sp) {
+      top: 70%;
+      left: 5%;
+    }
+  }
+}
+
+.message {
+  padding-top: 50px;
+  .title {
+    @include title;
+  }
+  .circle {
+    @include circle;
+  }
+  h3 {
+    text-align: center;
+    padding-block: 50px;
+  }
+  .sentence {
+    width: 100%;
+    height: 470px;
+    text-align: center;
+    background-image: url(../img/sentence.png);
+    @include mq(sp) {
+      height: auto;
+    }
+    .s-one,
+    .s-two {
+      padding-top: 50px;
+      line-height: 250%;
+      @include mq(sp) {
+        padding-inline: 15px;
+      }
+    }
+  }
+}
+
+.subject {
+  .title {
+    @include title;
+  }
+  .circle {
+    @include circle(#7de3ec);
+  }
+  .s-content {
+    padding: 30px 0 60px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    align-items: center;
+    .img {
+      text-align: center;
+      img {
+        width: 80%;
+      }
+    }
+    .bold {
+      font-weight: 600;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.sell {
+  .title {
+    @include title;
+  }
+  .circle {
+    @include circle(#f4dd5d);
+  }
+  .goods {
+    .slide-items {
+      padding-inline-start: 0px;
+      // padding:none;
+      width: 100%;
+      height: 100%;
+      // margin: 0 -10px;
+      // img {
+      //   padding-inline: 600px;
+      //   width: 100%;
+      //   object-fit: cover;
+    }
+  }
+}
+
+.present {
+  text-align: center;
+  padding-block: 40px;
+  .s-content {
+    padding-block: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    @include mq(sp) {
+      display: block;
+      position: relative;
+      height: 95vh;
+    }
+    .think,
+    .think2 {
+      width: 40%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background-color: rgb(255, 237, 138, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // text-align: center;
+      @include mq(sp) {
+        width: 70%;
+        text-align: center;
+      }
+      p {
+        text-align: left;
+        padding-inline: 10%;
+        // width: 70%;
+      }
+    }
+    .think {
+      @include mq(sp) {
+        position: absolute;
+      }
+    }
+    .think2 {
+      @include mq(sp) {
+        position: absolute;
+        right: 0;
+        top: 45%;
+      }
+    }
+  }
+  .gift {
+    padding-block: 40px;
+    img {
+      width: 100%;
+      margin: 20px 0 50px 0;
+    }
+    a {
+      @include a;
+      background-color: #ffed89;
+      border-radius: 30px;
+      /*ここ数値だと、後で崩れる？*/
+      padding: 30px 70px;
+    }
+    a:hover {
+      background-color: #f3d320;
+      transition: 3s;
+    }
+  }
+}
+
+.faq {
+  .title {
+    @include title;
+  }
+  .circle {
+    @include circle(#7de3ec);
+  }
+  .f-content {
+    details {
+      padding-block: 20px;
+      summary {
+        display: grid; /* 初期値の display: list-item 以外を指定したので、デフォルトの三角形アイコンは非表示になる */
+        grid-template-columns: 1fr 24px;
+        gap: 6px;
+        align-items: center;
+        cursor: pointer;
+        padding: 16px 24px;
+        border: 1px solid #7de3ec;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: transform 0.4s;
+        // color: #002255;
+        // /* Safariで表示されるデフォルトの三角形アイコンを消します */
+        // &::-webkit-details-marker {
+        //   display: none;
+        // }
+      }
+      .icon {
+        display: block;
+        position: relative;
+        width: 24px;
+        transform-origin: center 43%;
+        transition: transform 0.4s;
+        /* アイコンのバーのスタイル */
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          display: block;
+          width: 15px;
+          height: 3px;
+          background-color: rgb(125, 227, 236);
+        }
+        &::before {
+          left: 0;
+          transform: rotate(45deg);
+        }
+        &::after {
+          right: 0;
+          transform: rotate(-45deg);
+        }
+      }
+      /* アコーディオンが開いた時のスタイル */
+    }
+    details[open] .icon {
+      transform: rotate(180deg);
+    }
+    details[open] summary {
+      border-radius: 30px 30px 0 0;
+    }
+
+    .content {
+      background-color: rgb(125, 227, 236, 0.5);
+      border-radius: 0 0 30px 30px;
+      padding: 24px;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+}
+
+.contact {
+  .title {
+    @include title;
+  }
+  .circle {
+    @include circle;
+  }
+  .form {
+    padding-block: 20px;
+    input,
+    textarea {
+      background-color: white;
+      width: 100%;
+      padding-block: 10px;
+      border: solid 1px #370e0e;
+    }
+    dd,
+    dt {
+      width: 100%;
+    }
+    dd {
+      padding-bottom: 5px;
+      margin: 0;
+    }
+    dt {
+      padding-bottom: 20px;
+    }
+    .submit {
+      text-align: center;
+      button {
+        padding: 10px 20px;
+        background-color: #fa8eb5;
+        border: none;
+        border-radius: 40%;
+      }
+    }
+  }
+  .c-instagram {
+    .instagram {
+      iframe {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+      }
+    }
+  }
+}
+
+footer {
+  padding-block: 50px 0;
+  background-color: #370e0e;
+  color: #fffcec;
+  height: 300px;
+  position: relative;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    @include mq(sp) {
+      display: block;
+    }
+    li {
+      a {
+        @include a(#fffcec);
+      }
+    }
+  }
+  .btn {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    vertical-align: bottom;
+    a {
+      @include a(#fffcec);
+      text-align: center;
+      display: block;
+      p {
+        color: #370e0e;
+        display: inline-block;
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        top: 23%;
+        text-align: center;
+      }
+      p::before {
+        content: "";
+        // display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0px 5px 8.7px 5px;
+        border-color: transparent transparent #370e0e transparent;
+        position: absolute;
+        left: 50%;
+        top: -10%;
+        transform: translateX(-50%);
+      }
+      img {
+        // position: absolute;
+        // left: 50%;
+        // transform: translateX(-50%);
+        width: 300px;
+      }
+    }
+  }
+}
