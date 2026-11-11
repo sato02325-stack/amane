@@ -236,7 +236,7 @@ header .menu ul li a {
 }
 @media screen and (max-width: 600px) {
   .message .sentence .s-one,
-.message .sentence .s-two {
+  .message .sentence .s-two {
     padding-inline: 15px;
   }
 }
@@ -292,8 +292,7 @@ header .menu ul li a {
   box-shadow: 2px 3px 5px rgb(197, 196, 185);
 }
 .sell .goods .slide-items {
-  -webkit-padding-start: 0px;
-          padding-inline-start: 0px;
+  padding-inline-start: 0px;
   width: 100%;
   height: 100%;
 }
@@ -328,7 +327,7 @@ header .menu ul li a {
 }
 @media screen and (max-width: 600px) {
   .present .s-content .think,
-.present .s-content .think2 {
+  .present .s-content .think2 {
     width: 70%;
     text-align: center;
   }
@@ -389,7 +388,6 @@ header .menu ul li a {
 }
 .faq .f-content details {
   padding-block: 20px;
-  /* アコーディオンが開いた時のスタイル */
 }
 .faq .f-content details summary {
   display: grid; /* 初期値の display: list-item 以外を指定したので、デフォルトの三角形アイコンは非表示になる */
@@ -426,6 +424,9 @@ header .menu ul li a {
 .faq .f-content details .icon::after {
   right: 0;
   transform: rotate(-45deg);
+}
+.faq .f-content details {
+  /* アコーディオンが開いた時のスタイル */
 }
 .faq .f-content details[open] .icon {
   transform: rotate(180deg);
@@ -489,7 +490,7 @@ header .menu ul li a {
   border: none;
   border-radius: 40%;
 }
-.contact .c-instagram .instagram iframe {
+.contact .c-instagram .instagram img {
   width: 100%;
   aspect-ratio: 4/3;
 }
@@ -554,5 +555,4 @@ footer .btn a p::before {
 }
 footer .btn a img {
   width: 300px;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
