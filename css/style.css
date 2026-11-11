@@ -490,8 +490,11 @@ header .menu ul li a {
   border: none;
   border-radius: 40%;
 }
+.contact .c-instagram .instagram {
+  text-align: center;
+}
 .contact .c-instagram .instagram img {
-  width: 100%;
+  width: 50%;
 }
 
 footer {
